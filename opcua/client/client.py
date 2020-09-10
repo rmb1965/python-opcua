@@ -473,7 +473,7 @@ class Client(object):
         params.UserIdentityToken.CertificateData = uacrypto.der_from_x509(certificate)
         # specs part 4, 5.6.3.1: the data to sign is created by appending
         # the last serverNonce to the serverCertificate
-        sig = uacrypto.sign_sha1(self.user_private_key, challenge)
+        sig = uacrypto.sign_sha256(self.user_private_key, challenge)
         params.UserTokenSignature = ua.SignatureData()
         params.UserTokenSignature.Algorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"
         params.UserTokenSignature.Signature = sig
